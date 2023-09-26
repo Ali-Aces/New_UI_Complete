@@ -22,7 +22,10 @@ const Login = (props) => {
     setError,
   } = useContext(GlobalContext);
   let navigate = useNavigate();
-
+  const [rememberMe, setRememberMe] = useState(false);
+  const handleRememberMe = () => {
+    setRememberMe(!rememberMe);
+  };
   const handleChange = (e) => {
     const { id, value } = e.target;
     setLUser({
@@ -66,22 +69,23 @@ const Login = (props) => {
   return (
     <>
       <div className="LoginPage">
-        <p
+      <div className="">
+          <h4 style={{ marginLeft: "-160px" }}>
+            <b>Login</b> 
+          </h4>
+        </div> 
+      <p
           style={{
-            width: "10%",
-            height: "3px",
-            marginLeft: "-490px",
-            marginBottom: "20px",
-            border: "1px solid black",
-            backgroundColor: "black",
+            width: "7.5%",
+            height: "3.25px",
+            marginLeft: "-288px",
+            marginTop: "5px",
+            border: "1px solid #E50035",
+            backgroundColor: "#E50035",
           }}
         ></p>
 
-        <div className="">
-          <h4 style={{ marginLeft: "-280px" }}>
-            <b>Login</b> below
-          </h4>
-        </div>
+        
         <form className="LoginForm" onSubmit={handleSubmit}>
           <input
             className="formInput"
@@ -101,7 +105,7 @@ const Login = (props) => {
             type="password"
             placeholder="Password"
           />
-          <br></br>
+          
           <p style={{ color: "red" }}>
             {error && (
               <>
@@ -109,26 +113,44 @@ const Login = (props) => {
               </>
             )}
           </p>
-          <div style={{ display: "flex", cursor: "pointer" }}>
-            <p className="text_tag">
-              Don't have an account?<br></br>
-              <button
-                value="register"
-                style={{
-                  cursor: "pointer",
-                  backgroundColor: "#5d6d7e",
-                  border: "3px solid black",
-                  borderRadius: "3px",
-                  fontSize: "10px",
-                  padding: "3px",
-                }}
-                onClick={(e) => setForm(e.target.value)}
-              >
-                Register
-              </button>
+          <div style={{ display: "flex", marginTop: "10px",flexDirection:"row",justifyContent:"space-between" }}>
+        <label style={{fontSize:"13px"}}>
+          
+          <input
+            type="checkbox"
+            checked={rememberMe}
+            onChange={handleRememberMe}
+            
+          /> Remember Me
+        </label>
+        <p className="text_tag">
+              Forgot Password?<br></br>
+              
             </p>
-            <button className="formBtn">Submit</button>
+      </div>
+          <div style={{ marginTop: "10px" }}>
+            <button className="formBtn">Login</button>
+            <button
+            value="register"
+            style={{
+              cursor: "pointer",
+              backgroundColor: "#ffff",
+              color:"#1A73E8",
+              border: "1px solid #1A73E8",
+              borderRadius: "8px",
+              fontSize: "12px",
+              padding: "3px",
+              width:"200px",
+              height:"30px",
+              marginTop:"25px",
+            marginLeft:"50px"
+            }}
+            onClick={(e) => setForm(e.target.value)}
+          >
+            Create new account
+          </button>
           </div>
+        
         </form>
       </div>
     </>

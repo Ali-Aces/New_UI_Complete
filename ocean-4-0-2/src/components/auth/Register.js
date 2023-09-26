@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../GlobalProvider";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter,useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../actions/authActions";
 import classnames from "classnames";
-
+import Otp from "../auth/Otp";
 const Register = (userData) => {
   const { form, setForm, error, setError } = useContext(GlobalContext);
   const [user, setUser] = useState({
@@ -14,7 +14,7 @@ const Register = (userData) => {
     password: "",
     password2: "",
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { id, value } = e.target;
     setUser({
@@ -43,25 +43,30 @@ const Register = (userData) => {
       });
     }
   };
+  const handleNextClick = () => {
+
+    navigate("/Otp");
+  };
   // const { errors } = user.errors;
   return (
     <>
       <div className="LoginPage">
-        <p
-          style={{
-            width: "10%",
-            height: "3px",
-            marginLeft: "-490px",
-            marginBottom: "20px",
-            border: "1px solid black",
-            backgroundColor: "black",
-          }}
-        ></p>
+        
         <div className="" style={{ paddingLeft: "11.250px" }}>
-          <h4 style={{ marginLeft: "-290px" }}>
-            <b>Register</b> Below
+          <h4 style={{ marginLeft: "-180px",marginTop:"-35px" }}>
+            <b>Register</b> 
           </h4>
         </div>
+        <p
+          style={{
+            width: "11%",
+            height: "3.25px",
+            marginLeft: "-295px",
+            marginTop: "-10px",
+            border: "1px solid #E50035",
+            backgroundColor: "#E50035",
+          }}
+        ></p>
         <form className="LoginForm" onSubmit={handleSubmit}>
           <input
             className="formInput"
@@ -106,7 +111,7 @@ const Register = (userData) => {
           <br></br>
           <select
             className="formInput"
-            style={{ fontSize: "15px", padding: "0px" }}
+            style={{ fontSize: "15px", padding: "8px 0 8px 0 ",height: "38px" }}
             onChange={handleChange}
             id="Role"
           >
@@ -125,24 +130,26 @@ const Register = (userData) => {
             )}
           </p>
           <div style={{ display: "flex", cursor: "pointer" }}>
-            <p className="text_tag">
-              Already have an account? <br></br>
-              <button
-                value="login"
-                style={{
-                  cursor: "pointer",
-                  backgroundColor: "#5d6d7e",
-                  border: "3px solid black",
-                  borderRadius: "3px",
-                  fontSize: "10px",
-                  padding: "3px",
-                }}
-                onClick={(e) => setForm(e.target.value)}
-              >
-                login
-              </button>
-            </p>
-            <button className="formBtn">Submit</button>
+            
+             
+           {/* <button
+              value="login"
+              style={{
+                cursor: "pointer",
+                backgroundColor: "#5d6d7e",
+                border: "3px solid black",
+                borderRadius: "3px",
+                fontSize: "10px",
+                padding: "3px",
+              }}
+              onClick={(e) => setForm(e.target.value)}
+            >
+              login
+            </button>
+            
+            <button className="formBtn">Submit</button>*/}
+            <button
+            className="formBtn" onClick={handleNextClick}>Next</button>
           </div>
         </form>
       </div>

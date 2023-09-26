@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Row, Col } from "reactstrap";
 import { pickBy, keys, max, isEmpty } from "lodash";
 import * as XLSX from "xlsx";
@@ -7,7 +7,7 @@ import "../../App.css";
 import { useParams } from "react-router-dom";
 import Scrollbars from "react-custom-scrollbars-2";
 import axios from "axios";
-
+import { FaPlusCircle } from "react-icons/fa";
 function getDataRange(data) {
   const dataWithValues = pickBy(data, (value, key) => !!value.v);
   const cellNamesWithValues = keys(dataWithValues);
@@ -28,7 +28,14 @@ const ImportExcel = (props) => {
   const [addedFile, setAddedFile] = useState(false);
   const [work, setworksheet] = useState();
   const [datas, setalldata] = useState([]);
+  const fileInputRef = useRef(null);
 
+  const handleImportDataButtonClick = () =>{
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
   let { nullCount, setNullCount } = useContext(GlobalContext);
   const {
     setColumns,
@@ -293,10 +300,25 @@ const ImportExcel = (props) => {
       type="file"
       accept="xlsx,xls,csv"
       onChange={(e) => handleUploadFile(e)}
-      style={{ display: "block"}}
-      
+      style={{ display: "none"}}
+      ref={fileInputRef}
     />
-
+<button onClick={handleImportDataButtonClick}
+style={{
+  backgroundColor: "#213966",
+  color: "#ffffff",
+  fontSize: "13px",
+  padding: "7px",
+  border: "none",
+  borderRadius: "12px",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  fontSize:"14px",
+  width:"auto",
+}}>
+Import Data <FaPlusCircle className="plus-icon" /> 
+</button>
   
         <div
           className="fileName"

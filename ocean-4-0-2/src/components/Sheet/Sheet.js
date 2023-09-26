@@ -21,7 +21,8 @@ import Crosstable from "./Crosstable";
 import ClipLoader from "react-spinners/ClipLoader";
 import Bufferingwindow from "./Bufferingwindow";
 import AlanTalk from "./AlanTalk";
-import Sidebar from "../SideBar/Sidebar"
+import Sidebar from "../SideBar/Sidebar";
+
 const Sheet = () => {
   const [sheetParams, setSheetParam] = useState();
   const [scopemap, setScopeMap] = useState();

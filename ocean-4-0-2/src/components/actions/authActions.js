@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 import { setAuthenticated, SET_CURRENT_USER, USER_LOADING } from "./types";
 import { GlobalContext } from "../../GlobalProvider";
 import Sheet from "../Sheet/Sheet";
-export const registerUser = (userData, history) => {
+export const registerUser = ( userData, history) => {
   console.log("yes", history);
   axios
     // .post("http://localhost:5001/api/users/register", userData)

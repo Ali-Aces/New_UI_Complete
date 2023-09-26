@@ -163,7 +163,7 @@ const Story = () => {
                     <button
                       key={index}
                       onClick={() => setSelected(sheet.name)}
-                      className="storyDropBlock"
+                      className={`storyDropBlock ${selected === sheet.name ? 'selected' : ''}`}
                     >
                       {sheet.name}
                     </button>

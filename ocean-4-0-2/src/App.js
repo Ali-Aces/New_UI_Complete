@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { GlobalContext } from "./GlobalProvider";
 import Logins from "./components/auth/Logins";
 import PrivateRoutes from "./components/private-route/PrivateRoutes";
+import Otp from "./components/auth/Otp";
 const App = () => {
   const {} = useContext(GlobalContext);
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route exact path="/story/:story" element={<Story />} />
             <Route path="Datasource" element={<Datasource />} />
             <Route path="AnalyticsMain" element={<AnalyticsMain />} />
+            <Route path="Otp" element={<Otp />} />
           </Route>
         </Routes>
       </div>
